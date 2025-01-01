@@ -3,9 +3,6 @@ import time
 import sys
 input = sys.stdin.readline
 
-# 시작 시간
-start_time = time.time()
-
 N = int(input())
 arr = []
 
@@ -25,8 +22,3 @@ for i in arr:
 
 print(max_overlap)
 
-# 종료 시간
-end_time = time.time()
-
-# 실행 시간 출력
-print(f"Execution time: {end_time - start_time} seconds")
