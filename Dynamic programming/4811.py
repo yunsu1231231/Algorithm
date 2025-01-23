@@ -1,24 +1,29 @@
 def aahh(n):
-    dp = []
-    for i in range(2* n+1):
-        dp.append([0] * (n+1))
-
+    dp = [[0] * (n + 1) for i in range(2 * n + 1)]
+    
+    # dp = []
+    # for i in range(2* n+1):
+    #    dp.append([0] * (n+1))
+    
     dp[0][0] = 1
-    for i in range(n):
-        for j in range(i+1):
+
+# i 전체, j 약 반개 
+    for i in range(2 * n): 
+        for j in range(n + 1):
             if dp[i][j] > 0:
-                if j < n: 
+                if j < n:
                     dp[i + 1][j + 1] += dp[i][j] # W를 꺼낸 경우
                 if j > 0:
-                    dp[i + 1][j] += dp[i][j] # H를 꺼낸 경우:
-                
-    return dp[2*n][0]
+                    dp[i + 1][j - 1] += dp[i][j] # H를 꺼낸 경우
 
-n = int(input())
+    return dp[2 * n][0]
 
-for i in range(n):
-    a = int(input())
-    print(aahh(a))
+while True:
+    n = int(input())
+    if n == 0:
+        break
+    print(aahh(n))
+
 
 
 
@@ -39,3 +44,8 @@ for i in range(n):
 # 리스트의 복사본을 만들고, 모든 요소가 동일한 값  
 
 # dp(i, j) = dp(i-1, j+1) + dp(i, j-1) 
+
+# 의존관계 A가 B에 의존한다 / B가 바뀌면 A가 바뀐다
+# i가 바뀌면 j가 바뀐다 -> j가 i에 의존한다 
+
+# j가 i에 의존하기 때문에, i가 바깥쪽 반복문이고, j가 안쪽 반복문인 형태로 for문을 작성
