@@ -15,9 +15,9 @@ for i in range(minNumber):
     total += first[i] + second[i] + third[i]
 totalDiscount = total * 0.9 # 할인 
 
-firstSlice = first[2:]
-secondSlice = second[2:]
-thirdSlice = third[2:]
+firstSlice = first[minNumber:]
+secondSlice = second[minNumber:]
+thirdSlice = third[minNumber:]
 
 total_2 = 0 
 for i in firstSlice[::1]:
