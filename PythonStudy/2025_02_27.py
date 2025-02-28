@@ -1,3 +1,6 @@
+# Mutable = 가변 = 리스트, 딕셔너리, 집합 
+# Immutable = 불변 = 정수, 실수, 문자열, 튜플 
+
 # 자료형 
 # 숫자, 문자열, 불, 변수, 리스트 ,튜플, 딕셔너리, 
 
@@ -143,9 +146,289 @@ print(id(a[0]))  # 첫 번째 요소 (1)의 메모리 주소
 print(id(a[1]))  # 두 번째 요소 (2)의 메모리 주소
 print(id(a[2]))  # 세 번째 요소 (3)의 메모리 주소
 
+# 2004775422656
+# 2004769859888
+# 2004769859920
+# 2004769859952
+
 # 파이썬에서 서로 다른 자료형은 더할 수 없다 <-> TypeError
 # str(3) -> 자료형 변환 
 
+a[2:4] # -> 리스트 조작 **
 
+# 리스트도 하나의 자료형니깐 함수가 존재 - 파이썬에서 모든 자료형, 변수는 객체
+
+a = [1,2,3]
+a.append(4) # [1,2,3,4]
+a.append([5,7]) # 리스트가 추가 
+
+a.sort() # 정렬 # 1,4,3 -> 1,3,4 # 문자열도 가능 
+a.reverse() # 거꾸로 정렬 
+
+a.sort().reverse() # 체이닝으로 주소값으로 계속 접근가능
+
+a.index(3) # 3이 몇번째 index인지 반환하는 함수 
+
+a.insert(0,4) # 0번째 인덱스에 값을 넣는 함수 
+
+a.remove(3) # 첫번째 3인인 '값을' 제거 
+
+a.pop() # 맨 끝에 있는 값을 날리기 -> return o
+a.append(4) # 동작만 -> return x 
+
+a.extend([4,5]) # 리스트에 리스트를 넣기 
+
+# 리스트 = 서랍장 = 변수 여러가 한 번에 다루기
+
+# 튜플 
+# 튜플은 불변인 리스트 = 값을 다시 변경할 수 없다 
+
+a = [1,2,3] # 파이썬에서 변수가 전부 객체라는게 # 지금 이 선언 자체가 new로 객체를 생성한 것 
+a[3] = 3 # 이게 변경  
+
+# 튜플 생성 
+a = (1,2,3) # 생성 # 객체를 생성하는 것 <-> new가 생략 
+a = 1,2,3 # 이것도 튜플 생성 가능 
+
+#  차선에서 암기하고 + 이후 보충 
+del a[0] # -> TypeError / 변경 불가능 
+
+# 튜플 <-> 인덱싱, 슬라이싱 전부 가능 
+
+# 튜플 -> 슬라이싱 -> 새로운 객체가 생성, return에 new가 있고 원래값은 그대로 존재 
+# 이건 그냥 불변에서의 공통적 특징인 듯 
+
+# 리스트에서 슬라이싱하면 -> 그 참조값의 가르키니는 메모리에 저장된 값이 그대로 저장된 형태 
+
+
+a = [1,2,3] # 파이썬에서 변수가 전부 객체라는게 # 지금 이 선언 자체가 new로 객체를 생성한 것 
+# 그래서 a class에 있는 함수를 a.으로 접근 가능 
+
+
+# 딕셔너리 = 가변형 
+
+# 딕셔너리 = Hash = Map = Objet = JSon 
+# 키 벨류로 이루어진 자료형 
+# {이름:"홍길동", 나이:"조윤수"} # key value 구조 
+
+dic = {'name' : 'pey', 'color' : 'yellow'}
+dic[2] = 'b' # key - value 추가
+dic["key"] = 'value' # 맨 뒤에 추가 
+
+del dic['name'] # 반환 x, 동작, key로 key - value 삭제 
+
+
+# 딕셔너리 / key로 value를 얻기 
+
+dic["key"] # key로 value를 찾기 # 반환 
+# key는 중복 x 
+# key에는 immutable 자료형만 사용가능 
+
+
+dic = {'name' : 'pey', 'color' : 'yellow'}
+print(list(dic.keys())) # keys() -> key들을 담은 dic.keys()
+
+a.values() # 값들만 가져옴
+a.items() # key,value가 튜플에 담겨져서 쭉 가져옴 
+
+a.clear() # 값을 전부 날리기 
+
+# 같은 기능 
+dic["key"] # key 에러 
+dic.get("key") # none 값 반환 
+
+dic.get("key","값이 없을 때 반환")
+
+print("name" in dic) # dic 안에 key 값으로 name이 있는자 -> true, false 반환 
+
+# 집합 -> 자료형으로 제공 
+# 집합에 관한 것을 쉽게 처리 
+# set 
+
+# 집합 생성 -> 기본적으로 객체 생성 = 집합은 가변 
+
+a = set([1,2,3]) # {1,2,3} -> {} 인데 key, value가 아닌 값이 들어감 
+print(a) 
+
+# 집합은 -> 순서가 없고, 중복을 제거 
+# -> 그래서 인덱싱 불가능
+# -> 그래서 값을 가져오기 위해서는 list, tuple로 데이터 변환
+
+# 그럼 집합을 사용하는 이유
+# 중복제거, 교집합, 합집합 -> 함수로 제공 
+
+s1 = set([1,2,3])
+s2 = set([4,5,6])
+
+# 교집합
+print(s1 & s1)
+
+# 합집합
+print(s1 | s1)
+print(s1.union(s2))
+
+# 차집합
+print(s1-s2)
+print(s2.difference(s1)) # 인자로 전달 
+
+# 집합에 값 추가 -> add 
+s2.add(4)
+
+# 업데이트 = 여러 값 한번에 추가
+s1.update([4,4,5,6])
+
+# 특정 값 제거 -> remove
+s1.remove(2) # 인자로 전달이 인덱스가 아니라 값 
+
+# bool / 참, 거짓 -> 맨 앞에 무조건 대문자 
+
+# ==, < 등.. -> 논리연산자 사용가능
+
+# 참, 거짓 
+# 값이 없으면 -> 거짓 / 있으면 -> 참
+
+print(bool([1,2,3])) # true 
+
+# 변수
+
+# 변수 = 주소값을 담는 것 / 메모리에 실제 값 = 객체 
+# 주소값이 메모리 값을 참조하는 형태 
+
+a = [1,2,3]
+b = a # 주소깂이 복사 
+a[1] = 4 
+
+# 그래서 가변, 불변에 대한 이해 
+
+a = [1,2,3]
+b = a[0] # a[0] 자체가 새로운 객체를 반환
+a[1] = 4 
+
+a,b = ('python', 'life')
+print(type(a)) 
+
+a,b = ['python','life']
+
+# 값 바꾸기 
+a = 3
+b = 5 
+a,b = b,a # a,b 바꿀 수 있슴 
+
+# 제어문
+# 1. 조건문 2. 반복문
+
+# 조건문(if문)
+# if 조건문:
+#   수행할_문장1
+#   수행할_문장2 
+
+# 들여쓰기를 잘못하면 <-> IndentationError 
+
+# 조건안에 판단 -> and, or, not 
+
+
+# in, not 
+
+# in 
+
+print(1 in [1,2,3]) # true 
+
+# not
+
+print(1 not in [1,2,3]) # false
+
+print('a' in ('a','b','c')) 
+
+#else a:
+#    if:
+
+# elif a: 
+
+# 조건부 표현식 = 삼항연산자 
+# message = "success" if score >= 60 else "failure"
+
+# 있으면 참 / 없으면 거짓 -> 자주 사용 
+
+# While 
+a =  0
+while a <10:
+    a += 1 
+    print("a")
+
+# 디버깅 기능 -> 빨간 점 / break point / run -> start debuging / 한줄씩 실행 흐름 확인 
+
+# while 문 강제로 빠져나가기 <- break 
+# break 문은 현재 실행 중인 반복문(loop) = for,while,do-while 또는 switch문을 
+# 즉시 종료하고 빠져나가는 역할
+
+# 코드는 순차실행 <- 이게 대전제 
+# continue 문은 현재 실행 중인 반복문의 나머지 코드를 건너뛰고,
+# 다음 반복을 진행하는 역할
+
+# for문 
+# for 변수 in 리스트(또는 튜플, 문자열) = 값이 여러개인 것 
+
+a = [(1,2),(3,4)]
+for (first,last) in a:
+    print(first+last) # (first,last) <- (1,2) # 각각 할당 
+
+# 튜플은 굳이 감싸지 않아도 튜플 
+for first,last in a:
+    print(first+last)
+
+# range
+a = range(1,100) # [1,2,3,...99]
+
+
+for i in range(2,10):
+    for j in range(1,10):
+        print(i*j, end=" ")
+    print('') # 개행의 역할 
+
+# 기본적으로 print() 함수는 출력 후 줄바꿈을 자동으로 추가 = \n
+# \n 대신에 띄어쓰기 # print(i*j, end=" ")
+
+# 
+a = [1,2,3,4]
+result = []
+for num in a:
+    result.append(num*3)
+    
+# 리스트 컴프리헨션 
+a = [1,2,3,4]
+result = [num * 3 for num in a] # result list에 넣기 
+
+# result = [num * 3 for num in a if num % 2 ==0] 
+
+# 함수
+# 반복 -> 덩어리로 묶기 /기능 단위로 분리 
+
+def add(a,b): # add = 함수이름 / a,b 인자
+    return a + b
+
+add(1,2) # 반환 
+print(add(1,2))
+
+# 입력 x 
+def say():
+    return "Hi"
+
+print(say()) # Hi
+
+# return 값 x
+def add(a,b):
+    print(a+b)
+
+a = add(1,2) # print 함수 동작 자체는 출력 = 3 
+
+print(a) # 반환값이 없으므로 none
+
+# 여러개의 매개변수를 한 번에 받을 수 있다. 
+def add_many(*args):
+    print(1)
+
+# 여러값을 받을 수 있다. 
+def print_keyValue(**kwagrs): 
+    print(kwargs)
 
 
