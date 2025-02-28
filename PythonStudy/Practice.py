@@ -188,3 +188,11 @@ print("확인")
 #     squares.append(x**2)  # x의 제곱을 리스트에 추가
 # print(squares)  # 출력: [1, 4, 9, 16, 25]
 
+a = {1,2,3,4}
+b = {3,4,5,6}
+
+print(a&b) # 교집합
+print(a|b) # 합집합 
+print(a-b) # 차집합 
+print(b-a)
+
